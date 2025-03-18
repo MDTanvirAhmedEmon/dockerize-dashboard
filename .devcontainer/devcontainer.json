@@ -1,0 +1,24 @@
+{
+    "name": "startupimage",
+    "image": "node:22",
+    "workspaceFolder": "/app",
+    "mounts": [
+      // Bind mount for your local project
+      "source=/c/web-development/react-js-dashboard-startup,target=/app,type=bind",
+  
+      // Named volume for logs (similar to: -v ts-docker-logs:/app/logs)
+      // "source=ts-docker-logs,target=/app/logs,type=volume",
+  
+      // Anonymous volume for node_modules (similar to: -v /app/node_modules)
+      "target=/app/node_modules,type=volume"
+    ],
+    "runArgs": [
+      "--name",
+      "startup",
+      "-p",
+      "3000:3000",
+      "--rm" // Automatically removes the container after exiting VS Code
+    ],
+    "postCreateCommand": "npm install"
+  }
+  
